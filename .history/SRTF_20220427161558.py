@@ -1,3 +1,4 @@
+from prettytable import PrettyTable
 def findWaitingTime(processes, n, wt):
 	rt = [0] * n
 
@@ -46,7 +47,23 @@ def findTurnAroundTime(processes, n, wt, tat):
 	for i in range(n):
 		tat[i] = processes[i][1] + wt[i]
 
-def avgSJF_P_Time(processes, n):
+def avgSRTF_Time(processes, n):
+	wt = [0] * n
+	tat = [0] * n
+	findWaitingTime(processes, n, wt)
+	findTurnAroundTime(processes, n, wt, tat)
+	table = PrettyTable(["Processes","Burst Time","Waiting Time","Turn-Around Time"])
+	total_wt = 0
+	total_tat = 0
+	for i in range(n):
+		total_wt = total_wt + wt[i]
+		total_tat = total_tat + tat[i]
+		print(" ", processes[i][0], "\t\t",processes[i][1], "\t\t",wt[i], "\t\t\t", tat[i])
+
+	print("\nAverage waiting time = %.5f "%(total_wt /n) )
+	print("Average turn around time = ", total_tat / n)
+	
+def avgSRTF_Time_waiting(processes, n):
 	wt = [0] * n
 	tat = [0] * n
 
@@ -54,17 +71,11 @@ def avgSJF_P_Time(processes, n):
 
 	findTurnAroundTime(processes, n, wt, tat)
 
-	print("Processes \tBurst Time \tWaiting Time	 Turn-Around Time")
 	total_wt = 0
 	total_tat = 0
 	for i in range(n):
 
 		total_wt = total_wt + wt[i]
 		total_tat = total_tat + tat[i]
-		print(" ", processes[i][0], "\t\t",processes[i][1], "\t\t",
-				wt[i], "\t\t\t", tat[i])
 
-	print("\nAverage waiting time = %.5f "%(total_wt /n) )
-	print("Average turn around time = ", total_tat / n)
-	
-# Driver code
+	return total_wt / n

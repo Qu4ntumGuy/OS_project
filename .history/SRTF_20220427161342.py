@@ -46,7 +46,7 @@ def findTurnAroundTime(processes, n, wt, tat):
 	for i in range(n):
 		tat[i] = processes[i][1] + wt[i]
 
-def avgSRTF_Time(processes, n, bt):
+def avgSRTF_Time(processes, n):
 	wt = [0] * n
 	tat = [0] * n
 
