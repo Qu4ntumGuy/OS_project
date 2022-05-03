@@ -92,3 +92,5 @@ class scheduling_algo:
       FCFS_A_Table(self.proc, self.n, self.bt, self.at)
       RR_Table(self.proc, self.n, self.bt, quantum)
       SJF_Table(self.n)
+
+   
